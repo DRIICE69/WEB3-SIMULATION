@@ -137,4 +137,4 @@ curl -X GET "http://localhost:3000/api/rate/BNB/BTC/100"
 - Les prix sont récupérés via l'API publique de CoinGecko
 - L'API CoinGecko accepte 2 requêtes par/min <https://docs.coingecko.com/reference/common-errors-rate-limit>
 - C'est uniquement l'envoi d'ordre qui utilise CoinGecko
-- La base de données `orders.json` est utilisée pour stocker les ordres localement
+
