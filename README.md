@@ -43,13 +43,14 @@ Le serveur écoute par défaut sur http://localhost:3000.
 
 ## 🔁 Architecture des fichiers
 
-| Fichier             |   Roles                                    |
-|--------- -----------|--------------------------------------------|
+
+| Fichier             | Roles                                      |
+|---------------------|--------------------------------------------|
 | `index.js`          | Point d'entrée principal (API + WebSocket) |
 | `makeorder.js`      | Validation et création des ordres          |
 | `listOrders.js`     | Pagination des ordres                      |
 | `getRate.js`        | Calcul du taux optimal d'une paire         |
-| `calculate.js`      | Algorithme de calcul de taux               |
+| `calculate.js`      | Algorithme de calcul de taux                |
 | `CheckCrypto.js`    | Vérification + récupération des prix crypto |
 | `autoPairRate.js`   | Recherche des paires échangeables          |
 | `socketEmission.js` | Envoi des événements via WebSocket         |
@@ -104,12 +105,12 @@ Connexion au namespace racine (`/`). Deux événements émis :
 
 ## 🛠 Fonctions Utiles
 
-| Fichier            | Fonction                 | Description 
-|--------------------|----------------------------------------------------------------
-| `calculate.js`     | `calculateOptimalRate()` | Calcule combien on recevrait pour un montant donné, en prenant les meilleurs ordres 
-| `makeorder.js`     | `sendOrder()`            | Valide, enregistre et émet un ordre 
-| `autoPairRate.js`  | `findChangebleAssets()`  | Recherche les paires from/to échangeables 
-| `CheckCrypto.js`   | `fetchCryptoPrice()`     | Appelle l'API CoinGecko pour les prix en USD 
+| Fichier            | Fonction                 | Description                                                                         |
+|--------------------|--------------------------|-------------------------------------------------------------------------------------|
+| `calculate.js`     | `calculateOptimalRate()` | Calcule combien on recevrait pour un montant donné, en prenant les meilleurs ordres |
+| `makeorder.js`     | `sendOrder()`            | Valide, enregistre et émet un ordre                                                 |
+| `autoPairRate.js`  | `findChangebleAssets()`  | Recherche les paires from/to échangeables                                           |
+| `CheckCrypto.js`   | `fetchCryptoPrice()`     | Appelle l'API CoinGecko pour les prix en USD                                        | 
 
 ## 🧪 Exemples de test (via cURL)
 
