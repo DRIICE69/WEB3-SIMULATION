@@ -52,7 +52,7 @@
   const serverUrl = window.location.origin;
 
 
-      const socket = io(serverUrl /*"http://localhost:3000"*/, {
+      const socket = io(serverUrl, {
           reconnection: true,
           reconnectionAttempts: 5,
           reconnectionDelay: 1000
