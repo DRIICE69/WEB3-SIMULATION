@@ -1,0 +1,50 @@
+# Algorithme de Calcul 
+
+
+## Entrées
+- orders : Liste des ordres
+- reqAmount : Montant à échanger
+- fee : Frais (défaut : 0.1%)
+- dir : (optionnel) direction "FROM/TO"
+
+## Étapes
+
+1. Vérification et conversion du montant
+  - Si reqAmount n'est pas un entier ou une chaîne valide → erreur
+
+2. Si orders est vide → retourner 0
+
+3. Si dir est spécifié :
+  - extraire assetFrom et assetTo depuis dir
+  - rechercher les prix les plus bas de assetFrom (via `ask`) et de assetTo (via `bid`)
+  - si les deux existent :
+     - calculer rate = priceTo / priceFrom
+     - appliquer fee sur le montant reçu
+     - retourner le montant final
+  - sinon → retourner 0
+
+4. Sinon :
+  a. Calculer rateAtoB et rateBtoA pour chaque ordre
+  b. Séparer les `asks` et `bids`
+
+  Cas 1 : seulement asks
+    - trier asks par rateBtoA croissant
+    - simuler conversion jusqu’à épuisement du montant
+    - retourner total
+
+  Cas 2 : seulement bids
+    - trier bids par rateAtoB décroissant
+    - simuler conversion
+    - retourner total
+
+  Cas 3 : les deux présents
+    - trier bids par rateAtoB décroissant
+    - trier asks par rateBtoA croissant
+    - calculer bestBid = bids[0].rateAtoB × (1 - fee)
+    - calculer bestAsk = asks[0].rateBtoA × (1 - fee)
+    - si bestBid ≥ 1 / bestAsk
+        → appliquer algorithme bid (Cas 2)
+      sinon
+        → appliquer algorithme ask (Cas 1)
+
+5. Retour par défaut : 0
