@@ -44,16 +44,17 @@ Le serveur écoute par défaut sur http://localhost:3000.
 ## 🔁 Architecture des fichiers
 
 
-| Fichier             | Roles                                      |
-|---------------------|--------------------------------------------|
-| `index.js`          | Point d'entrée principal (API + WebSocket) |
-| `makeorder.js`      | Validation et création des ordres          |
-| `listOrders.js`     | Pagination des ordres                      |
-| `getRate.js`        | Calcul du taux optimal d'une paire         |
-| `calculate.js`      | Algorithme de calcul de taux                |
-| `CheckCrypto.js`    | Vérification + récupération des prix crypto |
-| `autoPairRate.js`   | Recherche des paires échangeables          |
-| `socketEmission.js` | Envoi des événements via WebSocket         |
+| Fichier             | Roles                                            |
+|---------------------|--------------------------------------------------|
+| `index.js`          | Point d'entrée principal (API + WebSocket)       |
+| `makeorder.js`      | Validation et création des ordres                |
+| `listOrders.js`     | Pagination des ordres                            |
+| `getRate.js`        | Calcul du taux optimal d'une paire               |
+| `calculate.js`      | Algorithme de calcul de taux                     |
+| `CheckCrypto.js`    | Vérification + récupération des prix crypto      |
+| `autoPairRate.js`   | Recherche des paires échangeables                |
+| `queuingDb.js`      | Recupperation des nouvelles données depuis la db |
+| `socketEmission.js` | Envoi des événements via WebSocket               |
 
 
 ## 📡 API REST
@@ -137,4 +138,3 @@ curl -X GET "http://localhost:3000/api/rate/BNB/BTC/100"
 - Les prix sont récupérés via l'API publique de CoinGecko
 - L'API CoinGecko accepte 2 requêtes par/min <https://docs.coingecko.com/reference/common-errors-rate-limit>
 - C'est uniquement l'envoi d'ordre qui utilise CoinGecko
-
