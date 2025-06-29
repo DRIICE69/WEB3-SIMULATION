@@ -10,7 +10,7 @@ const db = new LiteJsonDB({
 });
 
 const GetDataFromDB = require('./queuingDb')
-// Import helpers pour le calcul A/B auto
+// Import  pour le calcul A/B auto
 const autoPairRate = require('./autoPairRate.js');
 let io;
 
