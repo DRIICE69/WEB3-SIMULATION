@@ -2,7 +2,7 @@
 const getSingleRate = require('./getRate');
 
 /**
- * Trouve les actifs échangeables dans un carnet d'ordres et calcule leurs taux de change
+ * Trouve les actifs échangeables dans un orderBook et calcule leurs taux de change
  * @param {Array<Object>} orderBook - Carnet d'ordres contenant les ordres à analyser
  * @returns {Promise<Array<Object>|string>} Tableau des paires échangeables avec leurs taux ou message d'erreur
  * @throws {Error} Si une erreur survient lors du traitement
