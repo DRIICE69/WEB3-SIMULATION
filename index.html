@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 Live</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+      }
+      #status {
+          padding: 10px;
+          margin-bottom: 20px;
+          border-radius: 5px;
+          background-color: #f0f0f0;
+      }
+      .connected {
+          background-color: #d4edda;
+          color: #155724;
+      }
+      .disconnected {
+          background-color: #f8d7da;
+          color: #721c24;
+      }
+      #orders,#rate {
+          border: 1px solid #ddd;
+          padding: 15px;
+          border-radius: 5px;
+          min-height: 200px;
+      }
+  </style>
+</head>
+<body>
+  <h1>Live</h1>
+
+  <div id="status">État: Non connecté</div>
+
+  <h2>Ordres:</h2>
+  <div id="orders"></div>
+
+
+ <h2>Taux:</h2>
+  <div id="rate"></div>
+
+
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+
+  <script>
+  const serverUrl = window.location.origin;
+
+
+      const socket = io(serverUrl /*"http://localhost:3000"*/, {
+          reconnection: true,
+          reconnectionAttempts: 5,
+          reconnectionDelay: 1000
+      });
+
+
+      const statusElement = document.getElementById('status');
+      const ordersElement = document.getElementById('orders');
+      const rateElement = document.getElementById('rate');
+ 
+      socket.on("connect", () => {
+
+          statusElement.textContent = `Connecté (ID: ${socket.id})`;
+          statusElement.className = 'connected';
+      });
+
+      socket.on("newOrders", (data) => {
+
+          const orderDiv = document.createElement('div');
+          orderDiv.innerHTML = `
+              <p><strong>Orders:</strong> ${new Date().toLocaleString()}</p>
+              <pre>${JSON.stringify(data, null, 2)}</pre>
+              <hr>
+          `;
+          ordersElement.prepend(orderDiv);
+      });
+
+socket.on("rateOnTime", (data) => {
+
+  const RateDiv = document.createElement('div');
+  RateDiv.innerHTML = `
+      <p><strong>Rate:</strong> ${new Date().toLocaleString()}</p>
+      <pre>${JSON.stringify(data, null, 2)}</pre>
+      <hr>
+  `;
+  rateElement.prepend(RateDiv);
+});
+      socket.on("disconnect", (reason) => {
+
+          statusElement.textContent = `Déconnecté (Raison: ${reason})`;
+          statusElement.className = 'disconnected';
+      });
+
+
+      socket.on("connect_error", (err) => {
+
+          statusElement.textContent = `Erreur: ${err.message}`;
+          statusElement.className = 'disconnected';
+      });
+  </script>
+  </body>
+  </html>
