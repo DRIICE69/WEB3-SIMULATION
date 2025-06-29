@@ -1,6 +1,6 @@
 const LiteJsonDB = require('litejsondb');
 
-// Initialisation de la base de données JSON
+// Initialisation de la db JSON
 const db = new LiteJsonDB({
 
   filename: 'orders.json', 
