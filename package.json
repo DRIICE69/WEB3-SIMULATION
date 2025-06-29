@@ -1,7 +1,7 @@
 {
   "name": "WEB3 TEST",
   "version": "1.1.1",
-  "description": "Web3 test, use an orderBook to calculate rate, both side: ask & bid",
+  "description": "Web3 test, use an orderBook to calculate rate, both side: ask & bid, RealTime orders posts and rate reading",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
