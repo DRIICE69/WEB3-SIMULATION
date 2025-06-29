@@ -4,6 +4,8 @@ const http = require('http');
 const rateLimit = require('express-rate-limit');
 const { Server } = require('socket.io');
 
+const {db} = require('./db');
+
 /**
  * Point d'entrée principal de l'application Web3
  * Configuration du serveur Express et des routes API
@@ -31,9 +33,12 @@ const socketEmission = require('./socketEmission');
 socketEmission.initSocketEmission(io);
 
 // Démarrage du monitoring des taux de change en temps réel
- 
-socketEmission.RateOnRealTime();
- 
+function pull(){
+socketEmission.RateOnRealTime()
+}
+
+setInterval(pull,5000)
+pull() 
 const orderController = require("./makeOrder.js");
 const rateController = require("./getRate.js");
 const ordersListController = require("./listOrders.js");

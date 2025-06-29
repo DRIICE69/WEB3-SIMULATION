@@ -1,21 +1,11 @@
-const LiteJsonDB = require('litejsondb');
-
-// Initialisation de la db JSON
-const db = new LiteJsonDB({
-
-  filename: 'orders.json', 
-   
-//Active le log
-  enableLog: true         
-});
-
+const { db } = require('./db');
 // Import du calculateur de taux
 const rateCalculator = require('./calculate.js');
 
 /**
- * Calcule le taux de change optimal pour une paire de cryptomonnaies
- * @param {string} from - Symbole de la cryptomonnaie source (ex: 'BTC')
- * @param {string} to - Symbole de la cryptomonnaie cible (ex: 'ETH')
+ * Calcule le taux de change optimal pour une paire de crypto
+ * @param {string} from - Symbole de la cryptomonnaie source (ex: 'ADA')
+ * @param {string} to - Symbole de la cryptomonnaie cible (ex: 'LTC')
  * @param {number} [amountToExchange=1] - Montant à échanger (défaut: 1)
  * @returns {Promise<Object>} Objet contenant:
  *   - pair: {string} Paire d'échange (ex: 'BTC/ETH')
@@ -25,6 +15,8 @@ const rateCalculator = require('./calculate.js');
  *   - error?: {string} Message d'erreur si applicable
  * @throws {Error} Si le calcul du taux échoue
  */
+
+
 async function getRate(from, to, amountToExchange) {
   from = from.toUpperCase(); to = to.toUpperCase();
   
@@ -52,12 +44,12 @@ async function getRate(from, to, amountToExchange) {
     let dir = `${from}/${to}`
     const result = await rateCalculator.calculateOptimalRate(ordersArray, amount,dir);
 
-    // Réponse
+
     return {
       pair: `${from}/${to}`,
       amountRequested: amount,
       amountReceivable: result,
-      currency: from,
+
     };
     
   } catch (err) {

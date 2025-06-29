@@ -1,16 +1,9 @@
 const LiteJsonDB = require('litejsondb');
 
 // Initialisation de la DB
-const db = new LiteJsonDB({
-
-  filename: 'orders.json', 
-   
-//Active le log
-//  enableLog: true         
-});
-
+const {db} = require('./db')
 const GetDataFromDB = require('./queuingDb')
-// Import  pour le calcul A/B auto
+// Import helpers pour le calcul A/B auto
 const autoPairRate = require('./autoPairRate.js');
 let io;
 
@@ -29,7 +22,7 @@ function initSocketEmission(_io) {
  * @throws {Error} Si une erreur survient lors de la récupération ou du calcul des taux
  */
 async function RateOnRealTime() {
-  setInterval(async () => {
+//  setInterval(async () => {
     try {
       // Récupération de tous les ordres depuis la DB à chaque intervalle
       let ordersArray = await GetDataFromDB.gettingData()
@@ -40,8 +33,12 @@ async function RateOnRealTime() {
     } catch (error) {
       console.error("Error while asking db:", error);
     }
-  }, 5000);
+ // }, 5000);
 }
+
+//db.subscribe('players/p1/hp', (newHp) => {
+ // console.log(`Zelda's HP is now ${newHp}!`);
+///});
 
 /**
  * Émet un nouvel ordre via socket.io aux clients connectés

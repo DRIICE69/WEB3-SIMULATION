@@ -4,14 +4,7 @@ const LiteJsonDB = require('litejsondb');
 const socketEmission = require("./socketEmission")
 
 // Initialisation de la DB JSON
-const db = new LiteJsonDB({
-
-  filename: 'orders.json', 
-   
-//Active le log
-  enableLog: true         
-});
-
+const { db } = require('./db');
 // Import des functions externes
 const { fetchCryptoPrice, validateCrypto } = require('./checkCrypto.js');
 

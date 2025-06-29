@@ -2,14 +2,7 @@
 const LiteJsonDB = require('litejsondb');
 
 // Initialisation de la db JSON
-const db = new LiteJsonDB({
-  filename: 'orders.json',  
-
-  
-  // Active les logs 
-  enableLog: true         
-});
-
+const { db } = require('./db');
 /**
  * Récupère tous les ordres depuis la DB
  * @async
@@ -18,7 +11,7 @@ const db = new LiteJsonDB({
  * @throws {Error} Si la lecture de la base échoue
  */
 async function gettingData() {
-    
+  
   try {
     // Récupération de tous les ordres depuis la DB
     let allOrders = await db.get('orders/listOfOrders') || {};

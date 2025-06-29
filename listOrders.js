@@ -1,15 +1,8 @@
 const LiteJsonDB = require('litejsondb');
 const joi = require('joi');
 
-// Initialisation de la db JSON
-const db = new LiteJsonDB({
-
-  filename: 'orders.json', 
-   
-//Active le log
-  enableLog: true         
-});
-
+// Initialisation de la base de données JSON
+const { db } = require('./db');
 // Nombre fixe d'ordres/page
 const ORDERS_PER_PAGE = 3; 
 
