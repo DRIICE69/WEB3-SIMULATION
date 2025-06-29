@@ -55,7 +55,7 @@ Le serveur écoute par défaut sur http://localhost:3000.
 | `autoPairRate.js`   | Recherche des paires échangeables                |
 | `queuingDb.js`      | Recupperation des nouvelles données depuis la db |
 | `socketEmission.js` | Envoi des événements via WebSocket               |
-
+| `db.js`             | Fichier de configuration de la db                |
 
 ## 📡 API REST
 
@@ -99,11 +99,7 @@ GET /api/rate/BNB/BTC/100
 
 ## 🌐 WebSocket (Socket.io)
 
-Connexion au namespace racine (`/`).
-
-Accessible à `/live` 
-
-Deux événements émis :
+Connexion au namespace racine (`/`). Deux événements émis :
 
 - `newOrders` : lors de la création d'un nouvel ordre
 - `rateOnTime` : mise à jour automatique des paires échangeables toutes les 5 secondes
