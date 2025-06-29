@@ -1,7 +1,7 @@
 const LiteJsonDB = require('litejsondb');
 const joi = require('joi');
 
-// Initialisation de la base de données JSON
+// Initialisation de la db JSON
 const db = new LiteJsonDB({
 
   filename: 'orders.json', 
