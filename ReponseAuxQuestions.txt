@@ -1,0 +1,85 @@
+  ***Sécurité et Bonnes Pratiques***
+  
+  Q1 - Comment sécuriser les endpoints contre les attaques bruteforce ?
+  
+  R1 - Pour sécuriser les endpoints contre les attaques bruteforce, il faut :
+  
+  - Rate limiting par IP/utilisateur avec express-rate-limit (ex: 100 req/15min)
+  
+  - Blocage temporaire progressif : 1min → 5min → 1h après échecs répétés  
+  
+  - Validation et nettoyage des entrées (sanitization)
+  
+  - CAPTCHA après X tentatives échouées
+
+  
+  Q2 - Quels middlewares ajouteriez-vous pour une API publique ?
+  
+  R2 - Pour une API publique , nous ajouterons :
+  
+  - CORS pour gérer les requêtes cross-origin
+  
+  - Helmet pour sécuriser les headers HTTP
+  
+  - Rate limiting par API key et par IP
+  
+  - Body parser JSON avec limite de taille
+  
+  - Validation des entrées
+  
+  - HTTPS enforcement en production
+  
+  Q3 - Comment stockeriez-vous les clés API des utilisateurs de manière sécurisée ?
+  
+  R3 - Pour le stockage sécurisé des clés API :
+  
+  - Hashage avant stockage en BDD
+  
+  - Variables d'environnement (.env) pour les secrets système
+
+  - Chiffrement des données sensibles en base
+  
+  - Rotation périodique des clés (après X jours)
+
+  
+  ***Déploiement et DevOps***
+  
+  Q1 - Comment déploieriez-vous cette API en production ?
+  
+  R1 - Pour un déploiement, nous opterons pour :
+  
+
+  - PM2 + Nginx 
+  
+  - Alternative  : Railway/Render pour WebSocket support
+  
+  - Base de données : firebase
+
+  
+  Q2 - Quelles métriques monitoreriez-vous ?
+  
+  R2 - Métriques essentielles à surveiller :
+  
+  - Erreurs 4xx/5xx par endpoint
+  
+  - Latence moyenne des requêtes  
+
+  - Utilisation ressources : CPU, mémoire, disque
+  
+  - Disponibilité  et temps de réponse
+  
+  - Taux de succès des connexions WebSocket
+  
+  - Métriques business : ordres créés, taux de change calculés
+  
+  Q3 - Comment géreriez-vous les secrets ?
+  
+  R3 - Gestion des secrets en production :
+  
+  - Variables d'environnement 
+
+  - Chiffrement des fichiers de configuration sensibles
+
+  - Rotation automatique des mots de passe et tokens
+  
+  - Accès basé sur les rôles  pour l'équipe
