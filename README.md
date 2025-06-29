@@ -99,7 +99,11 @@ GET /api/rate/BNB/BTC/100
 
 ## 🌐 WebSocket (Socket.io)
 
-Connexion au namespace racine (`/`). Deux événements émis :
+Connexion au namespace racine (`/`).
+
+Accessible à `/live` 
+
+Deux événements émis :
 
 - `newOrders` : lors de la création d'un nouvel ordre
 - `rateOnTime` : mise à jour automatique des paires échangeables toutes les 5 secondes
